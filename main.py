@@ -1,16 +1,30 @@
 from PIL import Image
 
-text = "this is a sample text  and also works with double space."
+text = "this is a sample text  and also works with double space. 12345 121333 1214 21313 "
 
-bg = Image.new(mode="RGBA", size=(1920,1080), color = "white")
-im = Image.new(mode="RGBA", size=(20,20), color = "pink")
-im2 = Image.new(mode="RGBA", size=(20,20), color = "red")
+bg = Image.new(mode="RGBA", size=(595, 842), color = "white")
+im = Image.new(mode="RGBA", size=(10,10), color = "pink")
+im2 = Image.new(mode="RGBA", size=(10,10), color = "red")
 
+line = 0
+margin = 10
+y = 1
+x = 0
 
 for i in range(len(text)):
 
+	
+
 	if text[i].isspace():
-		bg.paste(im2,(100+(i*30),100))
+		bg.paste(im2,(margin+(x*10),margin+(y*20)))
+		x+=1
 	else:
-		bg.paste(im,(100+(i*30),100))
+		bg.paste(im,(margin+(x*10),margin+(y*20)))
+		x+=1
+	
+	if margin+(x*10) >= 595-margin:
+		x = 0
+		y+=1
+	
+		
 bg.show()
